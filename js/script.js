@@ -865,9 +865,6 @@ function addBrainDump() {
 
   displayTasks();
 
-  if (addedCount > 0) {
-    alert(`${addedCount} task(s) added!`);
-  }
 }
 
 // ==========================================
