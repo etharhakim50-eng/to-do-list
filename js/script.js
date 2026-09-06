@@ -864,7 +864,6 @@ function addBrainDump() {
   saveTasks();
 
   displayTasks();
-
 }
 
 // ==========================================
