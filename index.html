@@ -1,14 +1,240 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
-</head>
-<body>
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="./js/script.js"></script>
-</body>
+    <title>TaskTastic</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- ================= header ================= -->
+
+    <header>
+      <div class="logo">
+        <img src="images/lo-removebg-preview.png" alt="TaskTastic Logo" width="130" />
+      </div>
+
+      <div class="user-progress">
+        <div class="level-box">
+          <span>LEVEL</span>
+
+          <strong id="level">1</strong>
+        </div>
+
+        <div class="xp-box">
+          <div class="xp-text">
+            <span>XP</span>
+
+            <span id="xpText">0 / 100</span>
+          </div>
+
+          <div class="xp-bar">
+            <div id="xpProgress"></div>
+          </div>
+        </div>
+
+        <div class="streak">
+          <i class="fa-solid fa-fire"></i>
+
+          <span id="streak">0</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ================= main ================= -->
+
+    <main>
+      <!-- ================= top section ================= -->
+
+      <section class="top-section">
+        <div>
+          <p class="small-title">WELCOME BACK</p>
+
+          <h1>FANTASTIC</h1>
+
+          <p class="subtitle">Turn your chaos into progress.</p>
+        </div>
+
+        <div class="top-buttons">
+          <button id="addTaskBtn" class="primary-btn">
+            <i class="fa-solid fa-plus"></i>
+
+            Add Task
+          </button>
+
+          <button id="deleteAllBtn" class="danger-btn">
+            <i class="fa-solid fa-trash"></i>
+
+            Delete All
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= brain dump ================= -->
+
+      <section class="brain-dump">
+        <div class="brain-header">
+          <div class="brain-icon">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+
+          <div>
+            <h2>Brain Dump</h2>
+
+            <p>One line = one task.</p>
+          </div>
+        </div>
+
+        <textarea
+          id="brainInput"
+          placeholder="Write everything that's on your mind...
+            Study for the exam
+            Finish my homework
+            Read chapter 3
+            Go to the gym"
+        ></textarea>
+
+        <div class="brain-footer">
+          <span>
+            Each line will become a separate task.
+          </span>
+
+          <button id="brainAddBtn" class="brain-btn">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+            Turn into Tasks
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= tasks ================= -->
+
+      <section>
+        <div id="tasksContainer" class="tasks-container"></div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+
+          <h2>No tasks yet</h2>
+
+          <p>Add your first task and start being productive.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ================= modal ================= -->
+
+    <div id="taskModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <p class="modal-small-title">TASKTASTIC</p>
+
+            <h2 id="modalTitle">Add Task</h2>
+          </div>
+
+          <button id="closeModalBtn" class="close-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <form id="taskForm">
+          <input type="hidden" id="editingTaskId" />
+
+          <!-- name -->
+
+          <label> Task Name </label>
+
+          <input
+            type="text"
+            id="taskName"
+            placeholder="e.g. Study JavaScript"
+            required
+          />
+
+          <!-- description -->
+
+          <label> Description </label>
+
+          <textarea
+            id="taskDescription"
+            placeholder="Describe your task..."
+          ></textarea>
+
+          <!-- priority -->
+
+          <label> Priority </label>
+
+          <div class="priority-buttons">
+            <button type="button" class="priority-btn low" data-priority="Low">
+              Low
+            </button>
+
+            <button
+              type="button"
+              class="priority-btn medium selected"
+              data-priority="Medium"
+            >
+              Medium
+            </button>
+
+            <button
+              type="button"
+              class="priority-btn high"
+              data-priority="High"
+            >
+              High
+            </button>
+          </div>
+
+          <!-- SUBTASKS -->
+
+          <label> Sub-tasks </label>
+
+          <div class="subtask-input">
+            <input
+              type="text"
+              id="subTaskInput"
+              placeholder="e.g. Study Math"
+            />
+
+            <button type="button" id="addSubTaskBtn">
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+
+          <div id="subTasksPreview"></div>
+
+          <!-- BUTTONS -->
+
+          <div class="modal-buttons">
+            <button type="button" id="cancelBtn" class="cancel-btn">
+              Cancel
+            </button>
+
+            <button type="submit" class="primary-btn">Save Task</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
 </html>
