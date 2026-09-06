@@ -271,17 +271,7 @@ main {
   transform: translateY(-2px);
 }
 
-.danger-btn {
-  background: var(--danger-light);
 
-  color: var(--danger);
-
-  padding: 12px 18px;
-
-  border-radius: 10px;
-
-  font-weight: 600;
-}
 
 /* =========================
    brain dump
@@ -412,6 +402,19 @@ main {
 /* =========================
    tasks
 ========================= */
+
+.danger-btn {
+  background: var(--danger-light);
+
+  color: var(--danger);
+
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+  margin-bottom: 10px;
+}
 
 .tasks-container {
   display: grid;
